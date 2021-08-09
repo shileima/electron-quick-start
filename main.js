@@ -2,6 +2,15 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 
+const { Notification } = require('electron')
+
+const NOTIFICATION_TITLE = 'Basic Notification'
+const NOTIFICATION_BODY = 'Notification from the Main process'
+
+function showNotification () {
+  new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY }).show()
+}
+
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -13,7 +22,9 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  // mainWindow.loadFile('index.html')
+  // mainWindow.loadURL("https://shangoue.meituan.com")
+  mainWindow.loadURL("http://localhost:8080/")
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -30,7 +41,7 @@ app.whenReady().then(() => {
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
-})
+}).then(showNotification)
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
