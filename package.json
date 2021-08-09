@@ -19,6 +19,7 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
+    "@snowpack/plugin-react-refresh": "^2.5.0",
     "electron": "^13.1.8",
     "snowpack": "^3.3.7"
   },
